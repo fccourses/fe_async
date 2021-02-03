@@ -23,5 +23,12 @@ loadImage(
     document.body.append(img);
   })
   .catch((error) => {
-    alert(error);
+    // alert(error);
   });
+
+
+  /*  
+    User Card Render переписать на промисы.
+  
+    http://192.168.1.148:3000/users
+  */
