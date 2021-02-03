@@ -1,26 +1,16 @@
 'use strict';
 
-fetch('./data.json')
-  .then((response) => response.json())
-  .then((data) => {
-    console.table(data);
-  })
-  .catch((err) => {
-    console.log('COMMON ERROR HANDLER');
-  });
+const shchrodingerPromise = new Promise((resolve, reject) => {
+  const catDestiny = Math.random();
+  if (catDestiny >= 0.5) {
+    resolve('Cat is alive');
+  } else {
+    reject('Cat is dead');
+  }
+});
 
-const myFirstPromise = new Promise(executor);
+shchrodingerPromise.then(checkCat).catch(checkCat);
 
-function executor(resolve, reject) {
-  reject();
-}
-
-setTimeout(callback, ms);
-
-delay(ms).then(callback);
-
-function delay(ms) {
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, ms);
-  });
+function checkCat(str) {
+  console.log('STATUS: ', str);
 }
