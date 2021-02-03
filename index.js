@@ -1,16 +1,27 @@
 'use strict';
 
-const shchrodingerPromise = new Promise((resolve, reject) => {
-  const catDestiny = Math.random();
-  if (catDestiny >= 0.5) {
-    resolve('Cat is alive');
-  } else {
-    reject('Cat is dead');
-  }
-});
+function loadImage(src) {
+  // const img = new Image();
+  const img = document.createElement('img');
+  img.setAttribute('src', src);
 
-shchrodingerPromise.then(checkCat).catch(checkCat);
+  return new Promise((resolve, reject) => {
+    img.addEventListener('load', () => {
+      resolve(img);
+    });
 
-function checkCat(str) {
-  console.log('STATUS: ', str);
+    img.addEventListener('error', () => {
+      reject(new Error('Image has not been delivered'));
+    });
+  });
 }
+
+loadImage(
+  'https://i.piniom/originals/3b/8a/d2/3b8ad2c7b1be2caf24321c852103598a.jpg'
+)
+  .then((img) => {
+    document.body.append(img);
+  })
+  .catch((error) => {
+    alert(error);
+  });
