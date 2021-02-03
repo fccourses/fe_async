@@ -1,11 +1,5 @@
 'use strict';
 
-const p = fetch('./data.json');
-
-const jsonPromise = p.then((response) => {
-  return response.json();
-});
-
-jsonPromise.then((data) => {
-  console.table(data);
-});
+fetch('./data.json')
+  .then((response) => response.json())
+  .then((data) => console.table(data));
