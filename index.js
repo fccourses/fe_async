@@ -1,37 +1,35 @@
 'use strict';
 
-console.log('1');
-
-const id = setTimeout(() => {
-  while (true) {}
-}, 1000);
-
-clearTimeout(id);
-
-console.log('2');
-
 /* 
-Функция, которая последовательно выводит в консоль числа 
-от 1 до 20 с интервалом в 100мс.
-  Решить можно двумя способами. 
-    setTimeout - рекурсия с if'ом
-    setInterval - if, clearInterval
-  Померять время. 
-    console.time('1');
-    console.timeEnd('1');
+  Создать объект. У объекта - (строка, число, undefined, null, [])
+  и 2 метода.
+  Сериализовать его. JSON.stringify
+  Десериализовать JSON.parse
+
 */
-console.time('1');
-count();
 
-function count() {
-  let i = 1;
+const user = {
+  firstName: 'Vlad',
+  lastName: 'Testovich',
+  age: 45,
+  getName() {
+    return this.firstName;
+  },
+  isSelected: null,
+  isArgee: undefined,
+  isMale: true,
+  [Symbol('test')]: {},
+  phones: ['648237462387', '234234324', '2342342342'],
+  friend: {
+    firstName: '1',
+    lastName: '2',
+  },
+};
 
-  const id = setInterval(() => {
-    console.log(i++);
-    for (let i = 0; i < 1000000000; i++) {}
-    if (i > 20) {
-      clearInterval(id);
-      console.timeEnd('1');
-    }
-  }, 100);
-}
+const serializedObject = JSON.stringify(user); // сериализация
+
+console.log(serializedObject);
+
+const recoveredUser = JSON.parse(serializedObject);
+
+console.log(recoveredUser);

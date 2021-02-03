@@ -1,0 +1,20 @@
+[
+  {
+    "firstName": "Vlad",
+    "lastName": "Testovich",
+    "age": 45,
+    "isSelected": null,
+    "isMale": true,
+    "phones": ["648237462387", "234234324", "2342342342"],
+    "friend": { "firstName": "1", "lastName": "2" }
+  },
+  {
+    "firstName": "Vlad",
+    "lastName": "Testovich",
+    "age": 45,
+    "isSelected": null,
+    "isMale": true,
+    "phones": ["648237462387", "234234324", "2342342342"],
+    "friend": { "firstName": "1", "lastName": "2" }
+  }
+]
