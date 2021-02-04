@@ -1,22 +1,26 @@
 'use strict';
-
 console.log('start');
+setTimeout(() => {
+  console.log('timer');
+}, 0);
 
-try {
-  //обязателен
-  console.log('try1');
+const p1 = new Promise((resolve, reject) => {
+  console.log('создание промиса');
 
-  throw new Error();
-  console.log('try2');
+  resolve();
+  reject();
 
-} catch {
-  // необязателен
-  console.log('catched err');
+  console.log('завершение создания промиса');
+});
 
-  // но хотя бы один должен быть
-} finally {
-  // необязателен
-  console.log('finally');
-}
+p1.then(() => {
+  console.log('promise cb body');
+})
+  .catch(() => {
+    console.log('catch body');
+  })
+  .finally(() => {
+    console.log('fin');
+  });
 
 console.log('end');
