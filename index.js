@@ -1,40 +1,22 @@
 'use strict';
 
-fetch('./data.json')
-  .then((response) => {
-    console.log(response);
+console.log('start');
 
-    const jsonPromise = response.json();
+try {
+  //обязателен
+  console.log('try1');
 
-    return jsonPromise;
-  })
-  .then((jsonData) => {
-    console.table(jsonData);
+  throw new Error();
+  console.log('try2');
 
-    const stringData = JSON.stringify(jsonData, null, 4);
+} catch {
+  // необязателен
+  console.log('catched err');
 
-    document.body.append(stringData);
-  })
-  .catch((err) => {
-    if (err instanceof TypeError) {
-      console.log(10);
-    }
-
-    if (err instanceof SyntaxError) {
-      console.log(1);
-    }
-
-    document.body.append('ERROR HAPPENED. TRY AGAIN');
-  })
-  .finally(() => {
-    document.getElementById('load').remove();
-  });
-
-class UserError extends Error {
-  constructor(str) {
-    super(str);
-    this.userType = 'user';
-    this.name = 'User Error'
-    Error.captureStackTrace(this, UserError);
-  }
+  // но хотя бы один должен быть
+} finally {
+  // необязателен
+  console.log('finally');
 }
+
+console.log('end');
