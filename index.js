@@ -1,19 +1,21 @@
 'use strict';
 
-const numberPromise1 = new Promise((res, rej) => {
-  res(42);
-});
-
-Promise.reject(42).catch((num) => {
-  console.log('handler err');
-});
-
-function handlePromise(promise) {
-  return promise
-    .then((data) => {
-      console.log('Data is: ', data);
-    })
-    .catch((arg) => {
-      console.dir(arg);
-    });
+function sum(a, b) {
+  return a + b;
 }
+
+function withLog(func, ...args) {
+  const result = func(...args);
+  console.log(result);
+  return result;
+}
+
+function withLog2(func) {
+  return function (...args) {
+    const res = func(...args);
+    console.log(res);
+    return res;
+  };
+}
+
+const sumWithLog = withLog2(sum);
