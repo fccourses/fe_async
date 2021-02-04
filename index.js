@@ -16,10 +16,25 @@ fetch('./data.json')
     document.body.append(stringData);
   })
   .catch((err) => {
-    console.log('Ошибку споймали');
+    if (err instanceof TypeError) {
+      console.log(10);
+    }
+
+    if (err instanceof SyntaxError) {
+      console.log(1);
+    }
 
     document.body.append('ERROR HAPPENED. TRY AGAIN');
   })
   .finally(() => {
     document.getElementById('load').remove();
   });
+
+class UserError extends Error {
+  constructor(str) {
+    super(str);
+    this.userType = 'user';
+    this.name = 'User Error'
+    Error.captureStackTrace(this, UserError);
+  }
+}
